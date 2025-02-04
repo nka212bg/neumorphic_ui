@@ -1,0 +1,176 @@
+// @use "./fonts.scss";
+@use "./variables.scss";
+@use "./utils.scss";
+@use "./vueanimations.scss";
+@use "./components.scss";
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: baseline;
+
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+
+    font-family: var(--font-family);
+    text-wrap: pretty;
+    overflow-wrap: break-word;
+    font-variant-numeric: tabular-nums;
+
+    -webkit-font-smoothing: antialiased !important;
+
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+
+    @-moz-document url-prefix() {
+        scrollbar-width: auto;
+    }
+
+    &:hover {
+        scrollbar-color: var(--scrollbar-color) transparent;
+    }
+
+    @media only screen and (max-width: 1000px) {
+        scrollbar-width: none;
+
+        & ::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    color: var(--text);
+}
+
+html,
+body {
+    overflow-x: hidden !important;
+    overflow-y: overlay !important;
+    background: var(--background);
+    transition: background-color 0.2s ease-in-out;
+    height: -webkit-fill-available;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+}
+
+img {
+    max-width: 100%;
+    // height: auto;
+    vertical-align: middle;
+    font-style: italic;
+    background-repeat: no-repeat;
+    background-size: cover;
+    shape-margin: 0.75rem;
+    border-style: none !important;
+    object-fit: cover;
+
+    &.contain,
+    &[contain] {
+        object-fit: contain !important;
+    }
+}
+
+a {
+    &:focus,
+    &:focus-visible {
+        outline: 0.125rem solid var(--v-primary-base);
+
+        &:hover {
+            outline: 0.125rem solid var(--v-primary-base);
+        }
+    }
+}
+
+audio {
+    margin-block: 0.5rem;
+
+    &:focus,
+    &:focus-visible {
+        outline-offset: 0.25rem;
+        outline: 0.125rem solid var(--v-primary-base);
+    }
+}
+
+hr {
+    border: none;
+    height: 1px !important;
+    background-image: linear-gradient(to right, var(--border-color), var(--border-color)) !important;
+
+    &[gradient] {
+        background-image: linear-gradient(to right, transparent, var(--border-color), var(--border-color), var(--border-color), transparent) !important;
+    }
+}
+
+span,
+label,
+i,
+b {
+    display: inline-block;
+}
+
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: var(--font-size-15);
+    color: var(--text) !important;
+    min-width: 20px !important;
+
+    &::placeholder,
+    &:-ms-input-placeholder,
+    &::-ms-input-placeholder {
+        opacity: 1;
+        color: var(--text1) !important;
+        font-family: inherit;
+        font-size: var(--font-size-15);
+        // font-weight: 300 !important;
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill::first-line {
+        -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0) inset !important;
+        transition: background-color 9999999999999s ease-in-out 0s !important;
+        font-family: inherit !important;
+        color: var(--text) !important;
+        // font-weight: 300 !important;
+    }
+
+    &:autofill,
+    &:autofill:hover,
+    &:autofill:focus {
+        background-color: none !important;
+        font-family: inherit !important;
+        font-weight: 300 !important;
+        color: var(--text) !important;
+    }
+}
+
+.hide-number-controls input::-webkit-outer-spin-button,
+.hide-number-controls input::-webkit-inner-spin-button {
+    display: none;
+}
+
+.sr-only:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+}
+
+.v-text-field__slot input {
+    margin-block-start: 0;
+}
+
+pre code * {
+    font-family: "Courier New", monospace !important;
+}

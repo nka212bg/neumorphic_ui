@@ -1,0 +1,14 @@
+{
+    "name": "com.deck.ui",
+    "displayName": "Deck UI",
+    "version": "0.1.0",
+    "description": "Deck UI (neumorphic UI and component library)",
+    "author": "Nik A",
+    "main": "index.js",
+    "scripts": {
+        "scss": "sass --watch scss/global.scss scss/style.css --style compressed"
+    },
+    "devDependencies": {
+        "sass": "^1.83.4"
+    }
+}

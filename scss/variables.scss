@@ -1,0 +1,161 @@
+:root {
+    // --font-family: "Material Design Icons", "Abel", system-ui, sans-serif;
+    --font-family: system-ui, sans-serif;
+    --border-color: rgba(120, 120, 120, 0.2);
+    --border-color-hover: rgba(120, 120, 120, 0.5);
+    --box-shadow-color: rgba(0, 0, 0, 0.3);
+    --scrollbar-color: var(--border-color-hover);
+    --backdrop-color: rgba(255, 255, 255, 0.6);
+
+    --hue: 120;
+    --primary-color: hsl(var(--hue), 100%, 35%);
+
+    --text-1: #000000;
+    --text: #18191a;
+    --text1: #202122;
+    --text2: #282a2c;
+    --text3: #363a3d;
+    --text4: #444a4e;
+    --text5: #677075;
+
+    --background-3: #999999;
+    --background-2: #aaaaaa;
+    --background-1: #bbbbbb;
+    --background: #cccccc;
+    --background1: #dddddd;
+    --background2: #eeeeee;
+    --background3: #ffffff;
+
+    --dark-shadow: rgba(0, 0, 0, 0.2);
+    --light-shadow: rgba(255, 255, 255, 1);
+    --mid-shadow: rgb(111 111 111 / 10%);
+    --background-alpha: rgba(226, 226, 226, 0.65);
+
+    &.dark-theme {
+        --primary-color: hsl(var(--hue), 100%, 40%);
+
+        --text-1: #ffffff;
+        --text: #e9edf0;
+        --text1: #d4dbe0;
+        --text2: #c5cdd3;
+        --text3: #b4bdc4;
+        --text4: #a3adb4;
+        --text5: #7d858b;
+
+        --background-3: #000000;
+        --background-2: #111111;
+        --background-1: #222222;
+        --background: #333333;
+        --background1: #444444;
+        --background2: #555555;
+        --background3: #666666;
+
+        --box-shadow-color: rgba(0, 0, 0, 0.45);
+        --backdrop-color: rgba(0, 0, 0, 0.6);
+
+        --dark-shadow: rgba(0, 0, 0, 0.3);
+        --light-shadow: rgba(255, 255, 255, 0.28);
+        --mid-shadow: rgb(111 111 111 / 18%);
+        --background-alpha: rgba(66, 66, 66, 0.65);
+    }
+
+    accent-color: var(--primary-color);
+
+    $colors: (
+        "primary": var(--primary-color),
+        "error": #c72b2b,
+        "warning": #a17921,
+        "success": #12a059,
+        "white": white,
+        "black": black,
+    );
+
+    @each $key, $value in $colors {
+        .text-#{$key} {
+            color: #{$value} !important;
+        }
+
+        .background-#{$key} {
+            background-color: #{$value} !important;
+        }
+    }
+
+    // text colors
+    @each $value in ("text-1", "text", "text1", "text2", "text3", "text4", "text5") {
+        .#{$value} {
+            color: var(--#{$value}) !important;
+        }
+    }
+
+    // background colors
+    @each $value in ("background-1", "background-2", "background-3", "background", "background1", "background2", "background3", "background-alpha") {
+        .#{$value} {
+            background-color: var(--#{$value}) !important;
+        }
+    }
+
+    @for $key from 0 through 64 {
+        --font-size-#{$key}: #{$key / 16}rem;
+
+        .font-size-#{$key} {
+            font-size: #{$key / 16}rem !important;
+        }
+
+        .gap-#{$key} {
+            gap: #{$key * 4 / 16}rem !important;
+        }
+
+        .br-#{$key} {
+            border-radius: #{$key * 4 / 16}rem;
+        }
+
+        ///////// padding
+        .pt-#{$key} {
+            padding-top: #{$key * 4 / 16}rem;
+        }
+        .pb-#{$key} {
+            padding-bottom: #{$key * 4 / 16}rem;
+        }
+        .pl-#{$key} {
+            padding-left: #{$key * 4 / 16}rem;
+        }
+        .pr-#{$key} {
+            padding-right: #{$key * 4 / 16}rem;
+        }
+        .px-#{$key} {
+            padding-left: #{$key * 4 / 16}rem;
+            padding-right: #{$key * 4 / 16}rem;
+        }
+        .py-#{$key} {
+            padding-top: #{$key * 4 / 16}rem;
+            padding-bottom: #{$key * 4 / 16}rem;
+        }
+        .pa-#{$key} {
+            padding: #{$key * 4 / 16}rem;
+        }
+        /////////// margin
+        .mt-#{$key} {
+            margin-top: #{$key * 4 / 16}rem;
+        }
+        .mb-#{$key} {
+            margin-bottom: #{$key * 4 / 16}rem;
+        }
+        .ml-#{$key} {
+            margin-left: #{$key * 4 / 16}rem;
+        }
+        .mr-#{$key} {
+            margin-right: #{$key * 4 / 16}rem;
+        }
+        .mx-#{$key} {
+            margin-left: #{$key * 4 / 16}rem;
+            margin-right: #{$key * 4 / 16}rem;
+        }
+        .my-#{$key} {
+            margin-top: #{$key * 4 / 16}rem;
+            margin-bottom: #{$key * 4 / 16}rem;
+        }
+        .ma-#{$key} {
+            margin: #{$key * 4 / 16}rem;
+        }
+    }
+}
