@@ -1,20 +1,59 @@
+// https://css-tricks.com/styling-a-web-component/
 customElements.define(
     "deck-knob",
     class extends HTMLElement {
-        constructor() {
-            super()
-            const shadow = this.attachShadow({ mode: 'open' });
-            
-            // this.innerHTML = `<button deck-button class="ma-4">aaa</button>`;
+        // connectedCallback() {
+        //     this.innerHTML = `<button deck-button class="ma-4">
+        //     <slot></slot>
+        //     </button>`;
+        //     // const button = this.querySelector("button");
+        //     this.addEventListener("click", this.handleClick);
+        // }
 
-            shadow.innerHTML = `<style>
-                          * { /* in shadowDOM, styles only shadowDOM */
-                            color:green;
-                            font-weight: bold; 
-                          }
-                        </style>
-                        <div>Hello!</div>
-                        <slot></slot>`;
+        // handleClick(e) {
+        //     alert("Sup?");
+        // }
+
+        constructor() {
+            super().attachShadow({ mode: "open" });
+            this.shadowRoot.adoptedStyleSheets = cloneStyleSheets(this);
+
+            const size = this.getAttribute("size");
+            const value = this.getAttribute("value");
+
+            this.shadowRoot.innerHTML = `
+                  <style>
+                    :host {
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      gap: 1rem;
+                    }
+                  </style>
+                  
+                  <div deck-knob size="${size}" value="${value}"></div>
+                  <slot/>                    
+            `;
+        }
+
+        static get observedAtributes() {
+            return ["size", "value"];
+        }
+
+        connectedCallback() {
+            console.log("Custom element added to page.");
+        }
+
+        disconnectedCallback() {
+            console.log("Custom element removed from page.");
+        }
+
+        adoptedCallback() {
+            console.log("Custom element moved to new page.");
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            console.log(`Attribute ${name} has changed.`);
         }
     }
 );
@@ -26,3 +65,21 @@ style.innerHTML = `
 
     `;
 document.head.appendChild(style);
+
+/* -------------------- h -------------------- */
+function cloneStyleSheets(element) {
+    const sheets = [...(element.styleSheets || [])];
+    const styleSheets = sheets
+        .map((styleSheet) => {
+            try {
+                const rulesText = [...styleSheet.cssRules].map((rule) => rule.cssText).join("");
+                let res = new CSSStyleSheet();
+                res.replaceSync(rulesText);
+                return res;
+            } catch (e) {}
+        })
+        .filter(Boolean);
+    if (element === document) return styleSheets;
+    if (!element.parentElement) return cloneStyleSheets(document).concat(styleSheets);
+    return cloneStyleSheets(element.parentElement).concat(styleSheets);
+}
