@@ -621,6 +621,7 @@ ul {
     --rotation-angle: 30deg;
 
     position: relative;
+    display: inline-block;
     width: var(--size);
     aspect-ratio: 1/1 !important;
     cursor: pointer;

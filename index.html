@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="dark-themes" style="--hue: 200">
     <head>
         <title>Morse chat</title>
         <meta charset="utf-8" />
@@ -7,7 +7,13 @@
         <script src="deck_ui.js"></script>
     </head>
     <body>
-        <deck-knob value="20" size="3rem" class="ma-15">Echooo</deck-knob>
+        <script>
+            function aaa(event) {
+                console.log(event.target.value);
+            }
+        </script>
+        <deck-knob value="30" size="15" class="ma-10" oninput="aaa(event)"></deck-knob>
+        <deck-knob value="30" size="7" class="ma-8" oninput="aaa(event)"></deck-knob>
         <!-- <button deck-button class="ma-4">aaa</button> -->
     </body>
 </html>
